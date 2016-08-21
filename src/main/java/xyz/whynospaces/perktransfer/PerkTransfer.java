@@ -14,11 +14,15 @@ public class PerkTransfer extends JavaPlugin {
     public static Permission perms = null;
     public static PerkTransfer instance = null;
 
+    public TransferAPI transferAPI = null;
+
     @Override
     public void onEnable() {
         instance = this;
         setupPermissions();
         createConfig();
+        this.getCommand("perktransfer").setExecutor(new TransferCommand());
+        transferAPI = new TransferAPI();
     }
 
     private boolean setupPermissions() {
