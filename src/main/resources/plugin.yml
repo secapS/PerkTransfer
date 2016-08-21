@@ -1,0 +1,5 @@
+main: xyz.whynospaces.perktransfer.PerkTransfer
+name: PerkTransfer
+author: Spaces
+version: 0.1-SNAPSHOT
+depends: [Vault]

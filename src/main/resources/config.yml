@@ -1,0 +1,14 @@
+perks:
+   heal:
+     permission: essentials.heal
+     description: 'Restore your health.'
+   repair:
+      permissions:
+          - essentials.repair
+          - essentials.repair.enchanted
+          - essentials.repair.all
+          - essentiaks.repair.armor
+      description: 'Repair your whole inventory.'
+   vip:
+     group: VIP
+     description: 'Gives you VIP rank '
