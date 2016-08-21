@@ -5,3 +5,8 @@ version: 0.1-SNAPSHOT
 depends: [Vault]
 commands:
    perktransfer:
+      description: Transfer perks between players.
+      usage: /perktransfer [perk] [player]
+      permission: perk.transfer
+      permission-message: You do not have permission for this command.
+      aliases: [ptransfer, ptrade]

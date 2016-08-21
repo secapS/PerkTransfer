@@ -13,29 +13,29 @@ public class TransferAPI {
                 switch(getPerkType(perk)) {
                     case PERMISSION:
                         String permission = PerkTransfer.instance.getConfig().getString("perks." + perk + ".permission");
-                        PerkTransfer.perms.playerRemove(tradingPlayer, permission);
-                        PerkTransfer.perms.playerAdd(receivingPlayer, permission);
+                        PerkTransfer.perms.playerRemove(null, tradingPlayer, permission);
+                        PerkTransfer.perms.playerAdd(null, receivingPlayer, permission);
                         tradingPlayer.sendMessage(ChatColor.GREEN + "Trade successful!");
                         receivingPlayer.sendMessage(ChatColor.GREEN + "Trade successful!");
                         break;
                     case MULTIPLE_PERMISSIONS:
                         List<String> permissions = PerkTransfer.instance.getConfig().getStringList("perks." + perk + ".permissions");
                         for(String perms : permissions) {
-                            PerkTransfer.perms.playerRemove(tradingPlayer, perms);
-                            PerkTransfer.perms.playerAdd(receivingPlayer, perms);
+                            PerkTransfer.perms.playerRemove(null, tradingPlayer, perms);
+                            PerkTransfer.perms.playerAdd(null, receivingPlayer, perms);
                         }
                         tradingPlayer.sendMessage(ChatColor.GREEN + "Trade successful!");
                         receivingPlayer.sendMessage(ChatColor.GREEN + "Trade successful!");
                         break;
                     case GROUP:
                         String group = PerkTransfer.instance.getConfig().getString("perks." + perk + ".group");
-                        PerkTransfer.perms.playerRemoveGroup(tradingPlayer, group);
-                        PerkTransfer.perms.playerAddGroup(receivingPlayer, group);
+                        PerkTransfer.perms.playerRemoveGroup(null, tradingPlayer, group);
+                        PerkTransfer.perms.playerAddGroup(null, receivingPlayer, group);
                         tradingPlayer.sendMessage(ChatColor.GREEN + "Trade successful!");
                         receivingPlayer.sendMessage(ChatColor.GREEN + "Trade successful!");
                 }
             } else {
-                tradingPlayer.sendMessage(ChatColor.RED + "Trade failed!" + receivingPlayer.getName() + " already has this perk!");
+                tradingPlayer.sendMessage(ChatColor.RED + "Trade failed! " + receivingPlayer.getName() + " already has this perk!");
                 return;
             }
         } else {
@@ -88,30 +88,15 @@ public class TransferAPI {
         if(checkPerk(perk)) {
             if(PerkTransfer.instance.getConfig().getString("perks." + perk + ".permission") != null) {
                 String permission = PerkTransfer.instance.getConfig().getString("perks." + perk + ".permission");
-                if(PerkTransfer.perms.playerHas(player, permission)) {
-                    player.sendMessage(ChatColor.RED + "You already have " + perk.toUpperCase() + ".");
-                    return true;
-                } else {
-                    return false;
-                }
+                return (PerkTransfer.perms.playerHas(player, permission));
             }
             else if(PerkTransfer.instance.getConfig().getString("perks." + perk + ".permissions") != null) {
                 List<String> permissions = PerkTransfer.instance.getConfig().getStringList("perks." + perk + ".permissions");
-                if(PerkTransfer.perms.playerHas(player, permissions.get(0))) {
-                    player.sendMessage(ChatColor.RED + "You already have " + perk.toUpperCase() + ".");
-                    return true;
-                } else {
-                    return false;
-                }
+                return (PerkTransfer.perms.playerHas(player, permissions.get(0)));
             }
             else if(PerkTransfer.instance.getConfig().getString("perks." + perk + ".group") != null) {
                 String group = PerkTransfer.instance.getConfig().getString("perks." + perk + ".group");
-                if(PerkTransfer.perms.playerInGroup(player, group)) {
-                    player.sendMessage(ChatColor.RED + "You already have " + perk.toUpperCase() + ".");
-                    return true;
-                } else {
-                    return false;
-                }
+                return (PerkTransfer.perms.playerInGroup(player, group));
             }
         } else {
             player.sendMessage(ChatColor.RED + "That's not a real perk!");

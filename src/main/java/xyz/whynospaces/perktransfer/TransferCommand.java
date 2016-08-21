@@ -40,6 +40,7 @@ public class TransferCommand implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + args[1] + " is not online!");
                 }
             }
+            return true;
         }
         return false;
     }
