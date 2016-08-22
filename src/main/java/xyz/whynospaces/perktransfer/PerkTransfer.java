@@ -22,6 +22,7 @@ public class PerkTransfer extends JavaPlugin {
         setupPermissions();
         createConfig();
         this.getCommand("perktransfer").setExecutor(new TransferCommand());
+        this.getCommand("perkreload").setExecutor(new ReloadCommand());
         transferAPI = new TransferAPI();
     }
 

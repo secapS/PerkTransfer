@@ -10,3 +10,9 @@ commands:
       permission: perktransfer.use
       permission-message: §cYou do not have permission for this command.
       aliases: [ptransfer, ptrade]
+   perkreload:
+      description: Reloads perks config.
+      usage: /perkreload
+      permission: perktransfer.reload
+      permission-message: §cYou do not have permission for this command.
+      aliases: [preload]
